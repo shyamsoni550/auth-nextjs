@@ -18,7 +18,7 @@ export default function Login() {
     const onLogin = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("/api/login/login", user);
+            const response = await axios.post("/api/users/login", user);
             console.log("Login success", response.data);
             toast.success("Login successful!");
             router.push("/profile");
@@ -41,17 +41,17 @@ export default function Login() {
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
                 <div>
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                    <h2 className="mt-6 text-center text-3xl font-extrabold text-black">
                         {loading ? "Processing" : "Sign in to your account"}
                     </h2>
-                    <p className="mt-2 text-center text-sm text-gray-600">
+                    <p className="mt-2 text-center text-sm text-black">
                         Let's get started
                     </p>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={(e) => { e.preventDefault(); onLogin(); }}>
                     <div className="space-y-4">
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="email" className="block text-sm font-medium text-black">
                                 Email Address
                             </label>
                             <input
@@ -65,7 +65,7 @@ export default function Login() {
                             />
                         </div>
                         <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="password" className="block text-sm font-medium text-black">
                                 Password
                             </label>
                             <input
@@ -90,9 +90,9 @@ export default function Login() {
                     </div>
 
                     <div className="text-center">
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-black">
                             Don't have an account?{" "}
-                            <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            <Link href="/signup" className="font-medium text-black hover:text-indigo-500">
                                 Sign up here
                             </Link>
                         </p>
@@ -102,3 +102,4 @@ export default function Login() {
         </div>
     );
 }
+
