@@ -42,11 +42,11 @@ export default function Signup() {
     },[user]);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
+        <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md w-full space-y-8 bg-white bg-opacity-80 backdrop-blur-md rounded-xl p-10 shadow-lg">
                 <div>
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                       {loading ?"Processing...":"Sign Up"}
+                    <h2 className="mt-6 text-center text-4xl font-extrabold text-gray-900">
+                       {loading ?"Processing...":"Create your account"}
                     </h2>
                     <p className="mt-2 text-center text-sm text-gray-600">
                         Join us today and get started
@@ -64,7 +64,7 @@ export default function Signup() {
                                 value={user.username}
                                 onChange={(e) => setUser({ ...user, username: e.target.value })}
                                 placeholder="Enter your username"
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
                                 required
                             />
                         </div>
@@ -78,7 +78,7 @@ export default function Signup() {
                                 value={user.name}
                                 onChange={(e) => setUser({ ...user, name: e.target.value })}
                                 placeholder="Enter your full name"
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
                                 required
                             />
                         </div>
@@ -92,7 +92,7 @@ export default function Signup() {
                                 value={user.email}
                                 onChange={(e) => setUser({ ...user, email: e.target.value })}
                                 placeholder="Enter your email"
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
                                 required
                             />
                         </div>
@@ -106,7 +106,7 @@ export default function Signup() {
                                 value={user.password}
                                 onChange={(e) => setUser({ ...user, password: e.target.value })}
                                 placeholder="Enter your password"
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
                                 required
                             />
                         </div>
@@ -115,9 +115,14 @@ export default function Signup() {
                     <div>
                     <button
                         type="submit"
-                        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
+                        disabled={buttondisabled || loading}
+                        className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
+                            buttondisabled || loading
+                              ? "bg-indigo-300 cursor-not-allowed"
+                              : "bg-indigo-600 hover:bg-indigo-700"
+                        } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out`}
                     >
-                        {buttondisabled ? "Loading..." : "Signup"}
+                        {loading ? "Creating account..." : "Create Account"}
                     </button>
                     </div>
 
@@ -125,7 +130,7 @@ export default function Signup() {
                         <p className="text-sm text-gray-600">
                             Already have an account?{" "}
                             <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out">
-                                login in here
+                                Sign in here
                             </Link>
                         </p>
                     </div>

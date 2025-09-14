@@ -38,20 +38,20 @@ export default function Login() {
         }
     })
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
+        <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md w-full space-y-8 bg-white bg-opacity-80 backdrop-blur-md rounded-xl p-10 shadow-lg">
                 <div>
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-black">
-                        {loading ? "Processing" : "Sign in to your account"}
+                    <h2 className="mt-6 text-center text-4xl font-extrabold text-gray-900">
+                        {loading ? "Processing..." : "Sign in to your account"}
                     </h2>
-                    <p className="mt-2 text-center text-sm text-black">
-                        Let's get started
+                    <p className="mt-2 text-center text-sm text-gray-600">
+                        Welcome back! Please login to your account.
                     </p>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={(e) => { e.preventDefault(); onLogin(); }}>
                     <div className="space-y-4">
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-black">
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                 Email Address
                             </label>
                             <input
@@ -65,7 +65,7 @@ export default function Login() {
                             />
                         </div>
                         <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-black">
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                                 Password
                             </label>
                             <input
@@ -83,16 +83,25 @@ export default function Login() {
                     <div>
                         <button
                             type="submit"
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
+                            className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
+                                buttondisabled || loading
+                                  ? "bg-indigo-300 cursor-not-allowed"
+                                  : "bg-indigo-600 hover:bg-indigo-700"
+                            } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out`}
                         >
-                            Log In
+                            {loading ? "Signing in..." : "Log In"}
                         </button>
                     </div>
 
-                    <div className="text-center">
-                        <p className="text-sm text-black">
+                    <div className="text-center space-y-2">
+                        <p>
+                            <Link href="/forgotpassword" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                Forgot password?
+                            </Link>
+                        </p>
+                        <p className="text-sm text-gray-600">
                             Don't have an account?{" "}
-                            <Link href="/signup" className="font-medium text-black hover:text-indigo-500">
+                            <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
                                 Sign up here
                             </Link>
                         </p>

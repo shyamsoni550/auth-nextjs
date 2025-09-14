@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UserHub
 
-## Getting Started
+A modern, secure authentication system built with Next.js 15, featuring user registration, login, email verification, password reset, and profile management.
 
-First, run the development server:
+![UserHub](https://img.shields.io/badge/UserHub-Authentication-blue?style=for-the-badge)
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+- **User Registration & Login** - Secure signup and authentication
+- **Email Verification** - Account activation via email
+- **Password Reset** - Forgot password functionality with email reset
+- **Profile Management** - User dashboard and profile viewing
+- **JWT Authentication** - Secure token-based authentication
+- **Responsive Design** - Mobile-friendly UI with Tailwind CSS
+- **Middleware Protection** - Route protection and access control
+- **MongoDB Integration** - NoSQL database for user data
+- **Email Notifications** - SMTP email sending via Mailtrap
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js 15, React, TypeScript, Tailwind CSS
+- **Backend:** Next.js API Routes
+- **Database:** MongoDB with Mongoose
+- **Authentication:** JWT, bcryptjs
+- **Email:** Nodemailer with Mailtrap
+- **Styling:** Tailwind CSS
+- **Deployment:** Vercel (recommended)
+
+## 📋 Prerequisites
+
+Before running this application, make sure you have:
+
+- Node.js 18+ installed
+- MongoDB database (local or cloud)
+- Mailtrap account for email testing
+
+## 🔧 Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd userhub
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Setup:**
+   Create a `.env` file in the root directory with the following variables:
+
+   ```env
+   # Database
+   MONGODB_URI=mongodb://localhost:27017/userhub
+
+   # JWT Secret
+   JWT_SECRET=your-super-secret-jwt-key
+
+   # Domain
+   DOMAIN=http://localhost:3000
+
+   # Email Configuration (Mailtrap)
+   MAILTRAP_HOST=smtp.mailtrap.io
+   MAILTRAP_PORT=2525
+   MAILTRAP_USER=your-mailtrap-user
+   MAILTRAP_PASS=your-mailtrap-password
+   ```
+
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📖 Usage
+
+### User Flow
+
+1. **Registration:** Users can sign up with username, email, and password
+2. **Email Verification:** Users receive verification email and must verify their account
+3. **Login:** Verified users can log in with email and password
+4. **Profile:** Users can view their profile information
+5. **Password Reset:** Users can reset password via email if forgotten
+
+### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/users/signup` | User registration |
+| POST | `/api/users/login` | User login |
+| GET | `/api/users/logout` | User logout |
+| GET | `/api/users/me` | Get current user info |
+| POST | `/api/users/verifyemail` | Email verification |
+| POST | `/api/users/forgotpassword` | Request password reset |
+| POST | `/api/users/resetpassword` | Reset password |
+
+## 🏗️ Project Structure
+
+```
+userhub/
+├── src/
+│   ├── app/
+│   │   ├── api/users/          # API routes
+│   │   ├── login/              # Login page
+│   │   ├── signup/             # Signup page
+│   │   ├── profile/            # Profile pages
+│   │   ├── verifyemail/        # Email verification
+│   │   ├── forgotpassword/     # Password reset request
+│   │   ├── resetpassword/      # Password reset form
+│   │   └── layout.tsx          # Root layout
+│   ├── dbconfig/               # Database configuration
+│   ├── helpers/                # Utility functions
+│   ├── middleware.ts           # Route protection
+│   └── models/                 # MongoDB models
+├── public/                     # Static assets
+├── .env                        # Environment variables
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔒 Security Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Password hashing with bcryptjs
+- JWT token authentication
+- Email verification for account activation
+- Route protection with middleware
+- Secure password reset tokens with expiration
+- Input validation and sanitization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Deployment
 
-## Learn More
+### Vercel Deployment
 
-To learn more about Next.js, take a look at the following resources:
+1. **Connect your repository to Vercel**
+2. **Add environment variables** in Vercel dashboard
+3. **Deploy** - Vercel will handle the build process
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Manual Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm start
+```
 
-## Deploy on Vercel
+## 🤝 Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📧 Contact
+
+For questions or support, please open an issue on GitHub.
+
+## 🙏 Acknowledgments
+
+- Next.js team for the amazing framework
+- Vercel for hosting and deployment
+- MongoDB for the database
+- Tailwind CSS for styling
+- All contributors and open-source projects used
+
+---
+
+**Built with ❤️ using Next.js**

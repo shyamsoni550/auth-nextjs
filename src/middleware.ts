@@ -1,21 +1,36 @@
-import { NextResponse, NextRequest } from 'next/server'
- 
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
 export function middleware(request: NextRequest) {
-    const path=request.nextUrl.pathname;
-    const ispublicpath=path==="/login"||path==="/signup";
-    const token=request.cookies.get("token")?.value;
-    if(ispublicpath && token){
-        return NextResponse.redirect(new URL("/profile",request.url))
-    }
-    if(!ispublicpath && !token){
-        return NextResponse.redirect(new URL("/login",request.url))
-    }
-    return NextResponse.next();
+  const path = request.nextUrl.pathname;
+
+  const isPublicPath =
+    path === "/" ||
+    path === "/login" ||
+    path === "/signup" ||
+    path === "/verifyemail" ||
+    path === "/forgotpassword" ||
+    path === "/resetpassword";
+
+  const token = request.cookies.get("token")?.value || "";
+
+  if (isPublicPath && token && path !== "/" && path !== "/verifyemail") {
+    return NextResponse.redirect(new URL("/", request.nextUrl));
+  }
+
+  if (!isPublicPath && !token) {
+    return NextResponse.redirect(new URL("/login", request.nextUrl));
+  }
 }
- 
+
 export const config = {
-  matcher: 
-  [
-    "/","/login","/profile","/signup","/profile/:path*"
+  matcher: [
+    "/",
+    "/profile",
+    "/login",
+    "/signup",
+    "/verifyemail",
+    "/forgotpassword",
+    "/resetpassword",
   ],
-}
+};
